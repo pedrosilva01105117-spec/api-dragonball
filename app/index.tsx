@@ -34,6 +34,7 @@ const s = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  link: {},
   Titulo: {
     marginTop: -250,
     fontSize: 32,

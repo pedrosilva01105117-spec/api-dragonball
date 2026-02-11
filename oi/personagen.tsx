@@ -1,9 +1,10 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 import Animated, {
-    FadeInUp,
-    useAnimatedStyle,
-    useSharedValue,
-    withSpring,
+  FadeInUp,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
 } from "react-native-reanimated";
 
 export default function Personagen({ item }: { item: any }) {
@@ -15,20 +16,19 @@ export default function Personagen({ item }: { item: any }) {
 
   return (
     <Pressable
-      onPressIn={() => (scale.value = withSpring(0.88))}
+      onPressIn={() => (scale.value = withSpring(0.95))}
       onPressOut={() => (scale.value = withSpring(1))}
     >
       <Animated.View
         entering={FadeInUp.duration(500)}
         style={[s.wrap2, animatedStyle]}
       >
-        <View style={s.wrap3}>
-          <Text style={s.name}>{item.name}</Text>
-        </View>
-
         <View style={s.imageConteiner}>
           <Image style={s.image} source={{ uri: item.image }} />
         </View>
+        <Link href={`/modal/${item.id}`} style={s.link}>
+          Open modal
+        </Link>
       </Animated.View>
     </Pressable>
   );
@@ -45,7 +45,17 @@ const s = StyleSheet.create({
     gap: 5,
     marginTop: 50,
   },
-  wrap3: { padding: 5, borderRadius: 10, borderWidth: 2, color: "#000000" },
+  link: {
+    borderRadius: 50,
+    borderWidth: 2,
+    padding: 10,
+  },
+  wrap3: {
+    padding: 5,
+    borderRadius: 10,
+    borderWidth: 2,
+    color: "#000000",
+  },
   name: {},
   imageConteiner: {
     height: 400,
